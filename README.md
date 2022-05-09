@@ -1,3 +1,23 @@
+# storage-app
+
+Tämä on ETA0150 Webohjelmointi II kurssin harjoitustyö
+
+## Työn tavoite
+
+Varasto koostuu hyllyistä ja tavaroista. Jokaisella tavaralla ja hyllyllä on oma tunniste. Tavara pitää kuulua aina johonkin hyllyyn ja tiettyä tavaraa voi olla hyllyllä aina tietty määrä.
+
+Sivulla pitää pystyä tallentamaan, muokkamaan, poistamaan ja lukemaan varastosaldoja ja yksittäisiä tavaroiden tietoja voi muuttaa ilman, että tavara häviää hyllyltä.
+
+## Käyttöohje
+
+Node.js ja json-server tulee olla asennettuina
+[Node.js](https://nodejs.org/en/)
+Jos json serveriä ei ole asennettu sen voi asentaa komennolla: npm install -g json-server
+
+Lataa projekti koneelle ja avaa kansio komentokehotteessa.
+Testiserveri päälle komennolla: json-server db.json --watch --port 4000 --delay 2000
+Käynnistä react appi komennolla: npm start
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
