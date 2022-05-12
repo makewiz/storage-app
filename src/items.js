@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import ItemTable from './itemTable';
 
 class Items extends Component {
 
@@ -7,7 +8,6 @@ class Items extends Component {
 
         // bindaus funktioon, joka on määritetty render-funktiossa html-elementille
         this.lisaaPoistettava = this.lisaaPoistettava.bind(this);
-        this.poista = this.poista.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -16,7 +16,7 @@ class Items extends Component {
             data: null,
             nimi: "",
             hylly: "",
-            loading: false
+            loading: false,
         }
     }
 
@@ -24,7 +24,6 @@ class Items extends Component {
         if (event.target.name == "nimi") {
             this.setState({nimi: event.target.value});  
         } else {
-
             this.setState({hylly: event.target.value});  
         }    
     }
@@ -72,21 +71,6 @@ class Items extends Component {
           })
     }
 
-    async poista(event){
-        console.log(event.target.id);
-        // Kutsutaan fetchiä delete-metodilla
-        await fetch("http://localhost:4000/tavarat/"+ event.target.id,
-        {
-            method: 'DELETE', // Tässä voidaan määrittää metodi
-            headers: { // jos http-kutsu tehdään näin, niin pitää määrittää myös headerit
-              'Content-Type': 'application/json',
-            }
-          }).then((response)=>{
-              console.log(response);
-              this.fetchData();
-          })
-    }
-
     render() {
         let searchForm = (
             <form onSubmit={this.handleSubmit}>        
@@ -117,38 +101,10 @@ class Items extends Component {
             )
         } else if (this.state.data.length > 0) {
           // Vasta kun data on haettu json-serveriltä, niin voidaan käsitellä data ja lisätä html-komponentit
-            let dataObjektit = this.state.data.map((tavara) =>
-                <tr key = {tavara.id}>
-                    <td>{tavara.id}</td>
-                    <td>{tavara.nimi}</td>
-                    <td>{tavara.hylly}</td>
-                    <td>{tavara.korkeus}</td>
-                    <td>{tavara.leveys}</td>
-                    <td>{tavara.syvyys}</td>
-                    <td>{tavara.paino}</td>
-                    <td>{tavara.määrä}</td>
-                    <td><button onClick={this.poista} id={tavara.id}>Poista</button></td>
-                </tr>);
             return (
                 <div>
                     {searchForm}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Nimi</th>
-                                <th>Hylly</th>
-                                <th>Korkeus</th>
-                                <th>Leveys</th>
-                                <th>Syvyys</th>
-                                <th>Paino</th>
-                                <th>Määrä</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dataObjektit}
-                        </tbody>
-                    </table>
+                    <ItemTable data = {this.state.data}/>
                 </div>
             )
         } else {
