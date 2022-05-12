@@ -18,6 +18,10 @@ Lataa projekti koneelle ja avaa kansio komentokehotteessa.
 Testiserveri päälle komennolla: json-server db.json --watch --port 4000 --delay 2000
 Käynnistä react appi komennolla: npm start
 
+## Työn tekijä
+
+Markus S.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
