@@ -7,17 +7,21 @@ class Items extends Component {
         super();
 
         // bindaus funktioon, joka on määritetty render-funktiossa html-elementille
-        this.lisaaPoistettava = this.lisaaPoistettava.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.fetchData = this.fetchData.bind(this);
+        this.resetData = this.resetData.bind(this);
 
         // Komponentin oletustila voidaan määrittää näin:
         this.state = {
             data: null,
             nimi: "",
             hylly: "",
-            loading: false,
         }
+    }
+
+    resetData(){
+        this.setState({data: null});
     }
 
     handleChange(event) {
@@ -30,15 +34,15 @@ class Items extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.resetData();
         this.fetchData();
-        this.setState({loading: true});
     }
 
     // Tämä on ns. reactin lifecycle metodi, joka aktivoituu sen jälkeen, kun
     // html-puu on luotu. Käytännössä vastaa jQueryn document.ready(function(){//koodi })
     // määrittelyä, mutta tämä on komponenttikohtainen
     componentDidMount() {
-        //this.fetchData();
+        this.fetchData();
     }
 
     // asynkroniset eli säikeistetyt funktiot määritetään näin:
@@ -52,23 +56,7 @@ class Items extends Component {
         //console.log(data);
         // Tällä voidaan muuttaa komponentin tilaa. Tässä objektin sisällä objektin ominaisuus on
         // määritelty constructorilla ja dataa vastaava data on se, joka tulee yllä json-serveriltä
-        this.setState({ data: data, loading: false });
-    }
-
-    async lisaaPoistettava() {
-        // näin voidaan määrittää asynkroninen haku ilman, että se erikseen otetaan muuttujaan
-        await fetch("http://localhost:4000/tavarat",
-        {
-            method: 'POST', // Tässä voidaan määrittää metodi
-            headers: { // jos http-kutsu tehdään näin, niin pitää määrittää myös headerit
-              'Content-Type': 'application/json',
-            },
-            // body-lohkossa pitää välittää data palvelimelle post ja put-metodeilla. Deletellä tämä ei ole pakollista
-            body: JSON.stringify({nimi: "tst", hylly: 1}), 
-          }).then((response)=>{
-              console.log(response);
-              this.fetchData();
-          })
+        this.setState({data: data});
     }
 
     render() {
@@ -87,16 +75,11 @@ class Items extends Component {
                 <input type="submit" value="Hae" />
             </form>
         )
-        if (this.state.loading) {
-            return (
-                <p>Loading...</p>
-            )
-        } else if (this.state.data == null) {
+        if (this.state.data == null) {
         // Tämä koodi palautuu komponenttia luodessa, koska alustettiin data konstruktorissa
             return (
                 <div>
-                    {searchForm}
-                    <p>Hae jotakin</p>
+                    <p>Loading ...</p>
                 </div>
             )
         } else if (this.state.data.length > 0) {
@@ -104,7 +87,7 @@ class Items extends Component {
             return (
                 <div>
                     {searchForm}
-                    <ItemTable data = {this.state.data}/>
+                    <ItemTable data = {this.state.data} fetchData = {this.fetchData} resetData = {this.resetData} />
                 </div>
             )
         } else {

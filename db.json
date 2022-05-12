@@ -1,48 +1,48 @@
 {
-    "hyllyt": [
-        {
-            "id": 1,
-            "nimi": "Pultit ja mutterit",
-            "sijainti": "Halli 1",
-            "tilavuus": 6
-        },
-        {
-            "id": 2,
-            "nimi": "Lamput ja loisteputket",
-            "sijainti": "Halli 1",
-            "tilavuus": 6
-        }
-    ],
-    "tavarat": [
-        {
-            "id": 1,
-            "nimi": "Pultti M10x50 mm 20 kpl",
-            "hylly": 1,
-            "korkeus": 100,
-            "leveys": 100,
-            "syvyys": 100,
-            "paino": 100,
-            "määrä": 7
-        },
-        {
-            "id": 2,
-            "nimi": "LED kohdelamppu GU10 3W 3000K 200 lm 3kpl",
-            "hylly": 2,
-            "korkeus": 100,
-            "leveys": 100,
-            "syvyys": 100,
-            "paino": 100,
-            "määrä": 15
-        },
-        {
-            "id": 3,
-            "nimi": "LED teho-loisteputki G13 18W 4000K 2450 lm 1200 mm",
-            "hylly": 2,
-            "korkeus": 100,
-            "leveys": 100,
-            "syvyys": 100,
-            "paino": 100,
-            "määrä": 11
-        }
-    ]
+  "hyllyt": [
+    {
+      "id": 1,
+      "nimi": "Pultit ja mutterit",
+      "sijainti": "Halli 1",
+      "tilavuus": 6
+    },
+    {
+      "id": 2,
+      "nimi": "Lamput ja loisteputket",
+      "sijainti": "Halli 1",
+      "tilavuus": 6
+    }
+  ],
+  "tavarat": [
+    {
+      "nimi": "Pultti M10x50 mm 20 kpl",
+      "hylly": "2",
+      "korkeus": 100,
+      "leveys": 100,
+      "syvyys": 100,
+      "paino": 100,
+      "määrä": "16",
+      "id": 1
+    },
+    {
+      "nimi": "LED kohdelamppu GU10 3W 3000K 200 lm 3kpl",
+      "hylly": 2,
+      "korkeus": 100,
+      "leveys": "96",
+      "syvyys": 100,
+      "paino": 100,
+      "määrä": "12",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "nimi": "LED teho-loisteputki G13 18W 4000K 2450 lm 1200 mm",
+      "hylly": 2,
+      "korkeus": 100,
+      "leveys": 100,
+      "syvyys": 100,
+      "paino": 100,
+      "määrä": 11
+    }
+  ]
 }
